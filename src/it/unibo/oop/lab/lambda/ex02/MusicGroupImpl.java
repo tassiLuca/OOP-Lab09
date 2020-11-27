@@ -80,7 +80,7 @@ public final class MusicGroupImpl implements MusicGroup {
     public Optional<String> longestSong() {
         return this.songs.stream()
                   .max((s1, s2) -> Double.compare(s1.getDuration(), s2.getDuration()))
-                  .map(Song::toString);
+                  .map(Song::getSongName);
     }
 
     @Override
