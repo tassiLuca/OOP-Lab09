@@ -76,6 +76,11 @@ public final class MusicGroupImpl implements MusicGroup {
                          .map(Song::getSongName);
     }
 
+    /**
+     * 
+     * @param albumName the album name
+     * @return the duration of the album
+     */
     private Double durationOfAlbum(final String albumName) {
         return this.songs.stream()
                          .filter(s -> s.getAlbumName().equals(Optional.of(albumName)))
