@@ -79,9 +79,17 @@ public final class MusicGroupImpl implements MusicGroup {
                          .map(Song::getSongName);
     }
 
+    private Double durationOfAlbum(final String albumName) {
+        return this.songs.stream()
+                         .filter(s -> s.getAlbumName().equals(Optional.of(albumName)))
+                         .mapToDouble(Song::getDuration)
+                         .sum();
+    }
+
     @Override
     public Optional<String> longestAlbum() {
-        return null;
+        return albums.keySet().stream()
+                              .max((a1, a2) -> Double.compare(durationOfAlbum(a1), durationOfAlbum(a2)));
     }
 
     private static final class Song {
