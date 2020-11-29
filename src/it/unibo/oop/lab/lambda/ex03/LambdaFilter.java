@@ -1,12 +1,15 @@
 package it.unibo.oop.lab.lambda.ex03;
 
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.Arrays;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
-import java.util.function.Function;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -34,11 +37,16 @@ public final class LambdaFilter extends JFrame {
 
     private static final long serialVersionUID = 1760990730218643730L;
 
+    private static final String SEPARATORS = "[ \\t\\n\\x0B\\f\\r]";
+
     private enum Command {
         IDENTITY("No modifications", Function.identity()),
         TO_LOWERCASE("To lowercase", String::toLowerCase),
         COUNT_CHARS("Counts number of chars", s -> Integer.toString((int) s.chars().count())),
-        COUNT_LINES("Counts number of lines", s -> Integer.toString((int) s.lines().count()));
+        COUNT_LINES("Counts number of lines", s -> Integer.toString((int) s.lines().count())),
+        LIST_WORDS("List all the words in order", s -> Arrays.stream(s.split(SEPARATORS))
+                                                             .sorted()
+                                                             .collect(Collectors.joining("\n")));
 
         private final String commandName;
         private final Function<String, String> fun;
