@@ -37,7 +37,7 @@ public final class LambdaFilter extends JFrame {
 
     private static final long serialVersionUID = 1760990730218643730L;
 
-    private static final String SEPARATORS = "[ \\t\\n\\x0B\\f\\r]";
+    private static final String SEPARATORS = "(\\s|\\p{Punct})+";
 
     private enum Command {
         IDENTITY("No modifications", Function.identity()),
