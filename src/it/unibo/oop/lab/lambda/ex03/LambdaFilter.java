@@ -42,11 +42,14 @@ public final class LambdaFilter extends JFrame {
     private enum Command {
         IDENTITY("No modifications", Function.identity()),
         TO_LOWERCASE("To lowercase", String::toLowerCase),
-        COUNT_CHARS("Counts number of chars", s -> Integer.toString((int) s.chars().count())),
-        COUNT_LINES("Counts number of lines", s -> Integer.toString((int) s.lines().count())),
-        LIST_WORDS("List all the words in order", s -> Arrays.stream(s.split(SEPARATORS))
-                                                             .sorted()
-                                                             .collect(Collectors.joining("\n"))),
+        COUNT_CHARS("Counts number of chars", s -> 
+            Integer.toString((int) s.chars().count())),
+        COUNT_LINES("Counts number of lines", s -> 
+            Integer.toString((int) s.lines().count())),
+        LIST_WORDS("List all the words in order", s -> 
+            Arrays.stream(s.split(SEPARATORS))
+                  .sorted()
+                  .collect(Collectors.joining("\n"))),
         COUNT_WORD("Count number of words", s -> 
             Arrays.stream(s.split(SEPARATORS))
                   .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
