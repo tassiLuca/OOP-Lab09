@@ -90,8 +90,8 @@ public final class MusicGroupImpl implements MusicGroup {
 
     @Override
     public Optional<String> longestAlbum() {
-        return albums.keySet().stream()
-                              .max((a1, a2) -> Double.compare(durationOfAlbum(a1), durationOfAlbum(a2)));
+        return this.albums.keySet().stream()
+                                   .max((a1, a2) -> Double.compare(durationOfAlbum(a1), durationOfAlbum(a2)));
     }
 
     private static final class Song {
